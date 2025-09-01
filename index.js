@@ -13,14 +13,18 @@ import { requestLogger } from "./middleware/loggerMiddleware.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 
 // Security and performance middleware
 app.use(helmet());
 app.use(compression());
 // CORS configuration
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: [
+    "https://sahspeaks.com",
+    "https://www.sahspeaks.com",
+    "http://localhost:3000",
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
